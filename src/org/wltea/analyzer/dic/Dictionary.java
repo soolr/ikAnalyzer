@@ -20,6 +20,7 @@ public class Dictionary
   private Dictionary(Configuration cfg)
   {
     this.cfg = cfg;
+    loadMainDict();
     Thread listenDic = new Thread(new listenDic());
     listenDic.setDaemon(true);
     listenDic.start();
@@ -334,7 +335,6 @@ public class Dictionary
 	public void run() {
 		while(true){
 			System.out.println("œﬂ≥Ã÷¥––");
-			Dictionary.getSingleton().loadMainDict();
 			Dictionary.getSingleton().loadStopWordDict();
 			Dictionary.getSingleton().loadQuantifierDict();
 			try {
