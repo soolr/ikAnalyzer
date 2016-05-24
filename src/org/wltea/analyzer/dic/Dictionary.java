@@ -20,7 +20,6 @@ public class Dictionary
   private Dictionary(Configuration cfg)
   {
     this.cfg = cfg;
-    loadMainDict();
     Thread listenDic = new Thread(new listenDic());
     listenDic.setDaemon(true);
     listenDic.start();
@@ -334,9 +333,11 @@ public class Dictionary
 	@Override
 	public void run() {
 		while(true){
-			System.out.println("线程执行");
+			System.out.println("---线程执行---");
 			Dictionary.getSingleton().loadStopWordDict();
+			Dictionary.getSingleton().loadMainDict();			
 			Dictionary.getSingleton().loadQuantifierDict();
+			System.out.println("---线程执行完成---");
 			try {
 				Thread.sleep(60000);
 			} catch (InterruptedException e) {
